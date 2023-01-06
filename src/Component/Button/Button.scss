@@ -1,0 +1,88 @@
+@import 'mixin';
+
+@import url('https://fonts.googleapis.com/css?family=Inter:400,700');
+
+
+$mainColor :#BA985D;
+$disabledColor :#979797;
+$whiteColor:#fff;
+
+
+$primaryColors: ("idle-bg-color": $mainColor,
+  "idle-text-color": $whiteColor,
+  "disabled-bg-color": #E2E2E2,
+  "disabled-text-color": $disabledColor,
+  "hover-text-color": $whiteColor,
+  "hover-bg-color": #D4B57F,
+);
+
+$secondaryColors: ("idle-bg-color": $whiteColor,
+  "idle-text-color": $mainColor,
+  "disabled-bg-color": #EFEFEF,
+  "disabled-text-color": $disabledColor,
+  "hover-text-color": $mainColor,
+  "hover-bg-color": #FFFBF5,
+);
+
+.btn>span:first-child {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  margin: 0;
+  border: none;
+  overflow: visible;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  -webkit-appearance: none;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 15px;
+  vertical-align: middle;
+  font-size: 14px;
+  line-height: 38px;
+  text-align: center;
+  text-decoration: none;
+  font-family: Inter;
+  text-transform: capitalize;
+  border-radius: 5px;
+  font-weight: bold;
+
+
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  [stroke] {
+    stroke: currentColor;
+  }
+
+  path[fill] {
+    fill: currentColor;
+  }
+
+  svg {
+    vertical-align: middle;
+  }
+
+  &.btn-primary {
+    @include variant($primaryColors);
+  }
+
+  &.btn-secondary {
+    border-width: 1px;
+    border-style: solid;
+    @include variant($secondaryColors, "secondary");
+  }
+
+  &.btn-secondary-hover {
+    @include hover($secondaryColors, "secondary");
+  }
+
+  &.btn-primary-hover {
+    @include hover($primaryColors, "primary");
+  }
+}

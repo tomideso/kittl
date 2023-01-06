@@ -1,0 +1,21 @@
+.tm-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.tm-table td,
+.tm-table th {
+  padding: 5px;
+  vertical-align: top;
+  border: 1px dashed gray;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.tm-table th {
+  vertical-align: middle;
+  font-weight: bold;
+  text-transform: uppercase;
+}
