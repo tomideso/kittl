@@ -4,5 +4,5 @@ export interface WarpProviderValue {
   step: number;
   max: number;
   min: number;
-  value?: number;
+  value: number;
 }

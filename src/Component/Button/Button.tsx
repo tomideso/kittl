@@ -1,12 +1,12 @@
 import React from "react";
-import { Icon } from "@iconify/react";
+import * as Icons from "../Icons";
 import "./Button.scss";
 
 type theme = "primary" | "secondary";
 
 export interface ButtonProps {
   text: string;
-  icon?: string;
+  icon?: React.ReactNode;
   disabled?: boolean;
   theme?: theme;
   caret?: boolean;
@@ -24,15 +24,11 @@ export function Button({
   return (
     <button className={[`btn btn-${theme}`, className].join(" ")} disabled={disabled}>
       <span>
-        {icon ? (
-          <span>
-            <Icon icon={icon} />
-          </span>
-        ) : null}
+        {icon ? <span>{icon}</span> : null}
         <span>{text}</span>
         {caret ? (
           <span className="btn-icon">
-            <Icon icon="ph:caret-right-bold" />
+            <Icons.Carret />
           </span>
         ) : null}
       </span>

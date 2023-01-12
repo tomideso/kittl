@@ -9,11 +9,11 @@ interface WarpProviderProps extends WarpProviderValue {
 }
 
 function WarpProvider(props: WarpProviderProps) {
-  const { step = 1, max = 180, min = -180, value = 0, warpElementRef, children } = props;
+  const { step = 1, max = 100, min = -100, value = 0, warpElementRef, children } = props;
   const ref = useRef<WarpProviderProps>({ step, value, max, min, warpElementRef });
   const [state, setState] = useState<WarpProviderValue>(ref.current);
 
-  const oldValueRef = useRef<number>(state.value || 0);
+  const oldValueRef = useRef<number>(state.value);
 
   const Warp = useMemo(
     () => (warpElementRef.current ? new WarpJS(warpElementRef.current) : null),
@@ -23,13 +23,29 @@ function WarpProvider(props: WarpProviderProps) {
   useEffect(() => {
     if (!state.value) return;
 
-    const oldValue = oldValueRef.current || 0;
+    const oldValue = oldValueRef.current;
     const strength = state.value;
     oldValueRef.current = state.value;
 
+    const horizontalX = 385; //horizontal path width
+
     Warp.transform(([x, y]: number[]) => {
-      const dy = oldValue - strength;
-      return [x, y + dy * Math.sin(x / 128)];
+      const dy = oldValue - strength; //Determines the direction of the arc or the amplitude of the arc along Y axis
+
+      /**
+       *  The graph of y=sin(x * 1/2^n) shows the oscillating wave curve along x axis
+       *
+       * https://mathbitsnotebook.com/Algebra2/TrigGraphs/sinuso26.gif
+       * The graph of y=sin(x * 1/2) where x=2π , n=1 is shown in red above
+       *
+       * when x is expressed in terms of 2^n such that for n=m where 2^n is closest to x/2 such that x > 2^n <= x/2
+       * we will have a single parabola along x axis with phase point at the midpoint of x.
+       * For any X, X can expressed in terms of 2^n to conform to the above rule with the expression below
+       * n = Math.floor(Math.log2(x/2))
+       */
+
+      const phase_shift_point = x / 2 ** Math.floor(Math.log2(horizontalX / 2)); // Equals x/128
+      return [x, y + dy * Math.sin(phase_shift_point)];
     });
   }, [state.value]);
 

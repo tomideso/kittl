@@ -1,7 +1,6 @@
 @import 'mixin';
 
-@import url('https://fonts.googleapis.com/css?family=Inter:400,700');
-
+@import url('https://fonts.googleapis.com/css?family=Inter:600');
 
 $mainColor :#BA985D;
 $disabledColor :#979797;
@@ -31,7 +30,6 @@ $secondaryColors: ("idle-bg-color": $whiteColor,
 
 .btn {
   margin: 0;
-  border: none;
   overflow: visible;
   font: inherit;
   color: inherit;
@@ -39,18 +37,19 @@ $secondaryColors: ("idle-bg-color": $whiteColor,
   -webkit-appearance: none;
   display: inline-block;
   box-sizing: border-box;
-  padding: 0 15px;
+  padding: 0 13.1px;
   vertical-align: middle;
-  font-size: 14px;
-  line-height: 38px;
+  font-size: 12px;
+  line-height: 28px;
   text-align: center;
   text-decoration: none;
   font-family: Inter;
   text-transform: capitalize;
   border-radius: 5px;
-  font-weight: bold;
-
-
+  font-weight: 600;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
 
   &:not(:disabled) {
     cursor: pointer;
@@ -73,8 +72,7 @@ $secondaryColors: ("idle-bg-color": $whiteColor,
   }
 
   &.btn-secondary {
-    border-width: 1px;
-    border-style: solid;
+
     @include variant($secondaryColors, "secondary");
   }
 

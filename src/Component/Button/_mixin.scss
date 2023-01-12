@@ -17,7 +17,6 @@
 
     background-color: map.get($theme, "hover-bg-color");
     color: map.get($theme, "hover-text-color");
-    pointer-events: none;
 
     @if($action=='secondary') {
         border-color: map.get($theme, "hover-text-color");
@@ -28,6 +27,10 @@
 @mixin variant($theme, $action:"primary") {
     background-color: map.get($theme, "idle-bg-color");
     color: map.get($theme, "idle-text-color");
+
+    @if($action=='secondary') {
+        border-color: map.get($theme, "idle-text-color");
+    }
 
     &:disabled {
         @include disabled($theme, $action);

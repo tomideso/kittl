@@ -14,7 +14,7 @@ export function WarpContainer() {
         width: "500px",
       }}
     >
-      <WarpProvider min={-100} step={1} max={100} warpElementRef={ref}>
+      <WarpProvider value={0} min={-100} step={1} max={100} warpElementRef={ref}>
         <WarpElement ref={ref} />
         <WarpControl />
       </WarpProvider>

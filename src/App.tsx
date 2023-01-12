@@ -1,6 +1,7 @@
 import "./App.css";
 import WarpContainer from "./Component/Arch/WarpContainer";
 import Button from "./Component/Button/Button";
+import { Badge } from "./Component/Icons";
 
 const storyBook: Array<{
   theme: "primary" | "secondary";
@@ -14,28 +15,28 @@ const storyBook: Array<{
   },
   {
     theme: "primary",
-    icon: true,
-    caret: false,
+    icon: false,
+    caret: true,
   },
   {
     theme: "primary",
     icon: true,
-    caret: true,
+    caret: false,
   },
   {
     theme: "secondary",
-    icon: true,
+    icon: false,
+    caret: false,
+  },
+  {
+    theme: "secondary",
+    icon: false,
     caret: true,
   },
   {
     theme: "secondary",
     icon: true,
     caret: false,
-  },
-  {
-    theme: "secondary",
-    icon: true,
-    caret: true,
   },
 ];
 
@@ -60,16 +61,16 @@ function App() {
                   {theme} Button {suffix ? `(With ${suffix})` : ""}
                 </td>
                 <td>
-                  <Button text="Button" icon={"bi:bookmark"} theme={theme} caret={caret} disabled></Button>
+                  <Button text="Button" icon={icon ? <Badge /> : null} theme={theme} caret={caret} disabled></Button>
                 </td>
                 <td>
-                  <Button text="Button" icon={"bi:bookmark"} theme={theme} caret={caret}></Button>
+                  <Button text="Button" icon={icon ? <Badge /> : null} theme={theme} caret={caret}></Button>
                 </td>
                 <td>
                   <Button
                     text="Button"
                     className={`btn-${theme}-hover`}
-                    icon={"bi:bookmark"}
+                    icon={icon ? <Badge /> : null}
                     theme={theme}
                     caret={caret}
                   ></Button>
@@ -81,10 +82,10 @@ function App() {
       </table>
 
       <div className="App">
-        <Button text="Button" theme="primary" caret={true}></Button>
-        <Button text="Button" theme="secondary" caret={true}></Button>
-        <Button text="Button" icon={"bi:bookmark"} theme="secondary" caret={true}></Button>
-        <Button text="Button" icon={"bi:bookmark"} theme="secondary" caret={true} disabled></Button>
+        <Button text="Button" theme="primary"></Button>
+        <Button text="Button" theme="secondary"></Button>
+        <Button text="Button" icon={<Badge />} theme="secondary" caret={true}></Button>
+        <Button text="Button" icon={<Badge />} theme="secondary" caret={true} disabled></Button>
       </div>
 
       <WarpContainer />
